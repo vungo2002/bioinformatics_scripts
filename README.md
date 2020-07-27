@@ -1,2 +1,2 @@
-# bioinformatics_scripts
-Collection of useful scripts
+# Bioinformatics_scripts
+Personal collection of useful bioinformatic scripts by Vu Ngo 
