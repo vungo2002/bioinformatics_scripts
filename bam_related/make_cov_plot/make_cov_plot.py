@@ -45,6 +45,10 @@ if os.path.exists(covfile):
     print("found already calculated coverages :)")
     pass
 else:
+    if os.path.exists(bamfile + ".bai") == False:
+        print("Indexing BAM files...")
+        cmd = "samtools index " + bamfile
+        os.system(cmd)
     print("Calculating the coverages using deeptools bamCoverage")
     if ignoredup:
         cmd = "bamCoverage --bam %s -o %s --binSize 50000 --outFileFormat=bedgraph --numberOfProcessors=2 --ignoreDuplicates" %(bamfile, covfile)
