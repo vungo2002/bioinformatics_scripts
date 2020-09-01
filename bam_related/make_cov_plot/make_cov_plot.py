@@ -8,25 +8,49 @@ Output: a coverage plot of said bam file, over all chromosomal regions (hg38)
 """
 
 import os
-from sys import argv
-import seaborn as sns
+#from sys import argv
 import matplotlib.pyplot as plt
 import sys
 import numpy as np
+import argparse
+from argparse import RawTextHelpFormatter
 
-bamfile = argv[1]
-ignoredup = argv[2] # option to ignore duplicates or not, two values --nodup --withdup
-outfile = argv[3] # a plot in pdf format 
 
-if ignoredup != "--nodup" and ignoredup != "--withdup":
-    print("Please choose --nodup or --withdup")
-    sys.exit(-1)
-if ignoredup == "--nodup":
-    ignoredup = True
+
+parser = argparse.ArgumentParser(prog='make_cov_plot.py',
+                                 description="""
+	Author: Vu Ngo
+	This program plots the coverages from a BAM file""", formatter_class=RawTextHelpFormatter)
+
+# required arguments
+parser.add_argument('bamfile', nargs="?", help='The Bam file')
+parser.add_argument('outfile', nargs="?", help='the output file, please make sure the file name contains .png')
+
+# optional parameters
+parser.add_argument("--withdup", action="store_true", default=False, dest="withdup",
+                    help="BOOLEAN. Plot with duplicates. Default is FALSE.")
+parser.add_argument('--chrom', action='store', dest='chromosome',
+                    help='a chromosome name so that the plot only contains the result for this chromosome.')
+
+args = parser.parse_args()
+bamfile = args.bamfile
+outfile = args.outfile
+ignoredup = not args.withdup
+chromosome = args.chromosome
+
+print(bamfile, outfile, ignoredup, chromosome)
+    
+
+#bamfile = argv[1]
+#ignoredup = argv[2] # option to ignore duplicates or not, two values --nodup --withdup
+#outfile = argv[3] # a plot in pdf format 
+
+
+if ignoredup == True:
     print("Plotting Without Duplicates")
 else:
-    ignoredup = False
     print("Plotting WITH Duplicates")
+
 
 # first, generate the coverage bedgraph from the bam file (using deeptools)
 # if the bedgraph file exists, skip this step
@@ -58,24 +82,42 @@ else:
 
 
 
-
 # then read the bedgraph file and produce the plot 
 infile = covfile
 coverages = []
 x_labels = []
-for line in open(infile):
-    tmp = line.strip().split()
-    cov = float(tmp[-1])
-    chromname = tmp[0]
-    if "_" in chromname or "chr" not in chromname or "chrM" in chromname or "EBV" in chromname:
-        continue
-    #if tmp[0] != "chr1":
-    #    continue
-    coverages += [cov]
-    x_labels += [tmp[0]]
-len(coverages)
+
+if chromosome == None:
+    for line in open(infile):
+        tmp = line.strip().split()
+        cov = float(tmp[-1])
+        chromname = tmp[0]
+        if "_" in chromname or "chr" not in chromname or "chrM" in chromname or "EBV" in chromname:
+            continue
+        #if tmp[0] != "chr1":
+        #    continue
+        coverages += [cov]
+        x_labels += [tmp[0]]
+else:
+    print("Ploting only on chromosome", chromosome)
+    for line in open(infile):
+        tmp = line.strip().split()
+        cov = float(tmp[-1])
+        chromname = tmp[0]
+        if chromname != chromosome:
+            continue
+        #if tmp[0] != "chr1":
+        #    continue
+        coverages += [cov]
+        x_labels += [tmp[0]]
+
+
+#len(coverages)
 # norm it down to larger bins:
-merge_factor = 5 # merge the bins into even larger bins
+if chromosome == None:
+    merge_factor = 5
+else:
+    merge_factor = 1 # merge the bins into even larger bins
 readsize = 150
 covs = []
 curtotal = 0
@@ -131,9 +173,11 @@ for i in range(len(newlocs)):
 # ploting 
 print("plotting", outfile,"...")
 fig, ax = plt.subplots(nrows=1, ncols=1 )
-ax.scatter(x=range(len(covs)), y = covs, alpha=0.5, color = "green", s = 0.5)
-fig.set_figheight(10)
-fig.set_figwidth(20)
+ax.scatter(x=range(len(covs)), y = covs, alpha=0.5, color = "green", s = 0.2)
+
+if chromosome == None:
+    fig.set_figheight(10)
+    fig.set_figwidth(20)
 ax.set_xticks(ticks=newlocs)
 ax.set_xticklabels(labels=chromorder, rotation=90)
 ax.set_title(bamfile.split('/')[-1])
