@@ -24,7 +24,7 @@ for line in open(infile):
     x_labels += [tmp[0]]
 len(coverages)
 # norm it down to larger bins:
-merge_factor = 5 # merge the bins into even larger bins
+merge_factor = 1 # merge the bins into even larger bins, integer 1+
 readsize = 150
 covs = []
 curtotal = 0
