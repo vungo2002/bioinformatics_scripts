@@ -1,0 +1,8 @@
+{
+  "uniformity_of_coverage_pct_gt_02mean_over_target_region": 70.91,
+  "aligned_reads": 17109490.0,
+  "aligned_reads_in_target_region": 14039587.0,
+  "aligned_reads_in_target_region_pct": 82.06,
+  "variants_het_to_hom_ratio_pass": 1.27,
+  "uniformity_of_coverage_pct_gt_02mean_over_genome": 8.5
+}
