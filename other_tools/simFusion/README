@@ -1,0 +1,71 @@
+Purpose of script: This script is designed to use RSVSim + InsilicoSeq to insert simulated translocations into hg19 reference genome and generate Illumina NovaSeq Paired-End Reads
+
+Author: Ankit Jambusaria
+
+Email: ajambusaria@ambrygen.com
+
+Date Created: 10-07-21
+
+Inputs:
+
+geneAchr - chromosome number for partner geneA (e.g. chr2)
+
+geneAstart - geneA genomic start location (e.g. 42396477)
+
+geneAend - geneA genomic end location (e.g. 42559688)
+
+geneBchr - chromosome number for partner geneB (e.g. chr2)
+
+geneBstart - geneB genomic start location (e.g. 29416090)  
+
+geneBend - geneA genomic end location (e.g. 30144477)  
+
+fusionName - name of the fusion (e.g. EML4-ALK)
+
+threads - number of threads (e.g. 8)
+
+bedFile - path for bed file (Note: reads will be only be generated for genomic regions in bed file that are larger than read length i.e. 150bp)
+
+nReads - number of reads to generate. Allows suffixes k, K, m, M, g and G (ex 0.5M for 500000).
+
+outputPath - Output file path (e.g. /mnt/ajambusaria/projects/liquid_biopsy/simFusion/output/EML4-ALK/)
+
+How to run:
+
+Step 1: Activate simFusion conda environment 
+    Path: simFusion (/mnt/ajambusaria/anaconda3/envs/simFusion)
+
+Step 2: Run Pipeline script with user input parameters
+    
+    EML4-ALk Translocation Example:
+    
+    python3 simFusion.py \
+    --geneAchr chr2 \
+    --geneAstart 42396477 \
+    --geneAend 42559688 \
+    --geneBchr chr2 \
+    --geneBstart 29416090 \
+    --geneBend 30144477 \
+    --fusionName EML4-ALK \
+    --threads 32 \
+    --bedFile /mnt/ajambusaria/projects/liquid_biopsy/simulateFusions/simulations/EML4-ALK-2/ref/eml4_alk.bed \
+    --nReads 100k \
+    --outputPath /mnt/ajambusaria/projects/liquid_biopsy/simFusion/output/EML4-ALK/
+
+
+Outputs Expected:
+    
+    1. {fusionName}_{nReads}_R1.fastq.gz - fusion positive sample forward reads
+    
+    2. {fusionName}_{nReads}_R2.fastq.gz - fusion positive sample reverse reads
+    
+    3. {fusionName}_{nReads}_abundance.txt - abundance of reads for genomic regions in bed file
+    
+    4. genome_rearranged.fasta - rearranged hg19 genome containing input translocation
+    
+    5. genome_rearranged.fasta.fai - index for rearranged hg19 genome
+    
+    6. subset_genome_rearranged.fasta - subset rearranged genome to bed file regions
+    
+    7. translocations.csv - expected translocation
+

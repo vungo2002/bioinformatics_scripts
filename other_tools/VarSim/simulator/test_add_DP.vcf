@@ -1,0 +1,101 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="Accept as a confident somatic mutation">
+##FILTER=<ID=alt_allele_in_normal,Description="Evidence seen in the normal sample">
+##FILTER=<ID=clustered_events,Description="Clustered events observed in the tumor">
+##FILTER=<ID=germline_risk,Description="Evidence indicates this site is germline, not somatic">
+##FILTER=<ID=homologous_mapping_event,Description="More than three events were observed in the tumor">
+##FILTER=<ID=multi_event_alt_allele_in_normal,Description="Multiple events observed in tumor and normal">
+##FILTER=<ID=panel_of_normals,Description="Seen in at least 2 samples in the panel of normals">
+##FILTER=<ID=str_contraction,Description="Site filtered due to contraction of short tandem repeat region">
+##FILTER=<ID=t_lod_fstar,Description="Tumor does not meet likelihood threshold">
+##FILTER=<ID=triallelic_site,Description="Site filtered because more than two alt alleles pass tumor LOD">
+##FILTER=<ID=low_t_alt_frac,Description="Site filtered due to low alt allele fraction">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=AF,Number=1,Type=Float,Description="Allele fraction of the event in the tumor">
+##FORMAT=<ID=AFDP,Number=1,Type=Integer,Description="Read depth to calculate AF">
+##FORMAT=<ID=AFDPLOWMQ,Number=1,Type=Integer,Description="Read depth to calculate AF with low mapq reads">
+##FORMAT=<ID=AFLOWMQ,Number=1,Type=Float,Description="Allele fraction of the event in the tumor with low mapq reads">
+##FORMAT=<ID=ALTHC,Number=1,Type=Integer,Description="Depth of high confidence alt">
+##FORMAT=<ID=ALTHCLOWMQ,Number=1,Type=Integer,Description="Depth of high confidence alt with low mapq reads">
+##FORMAT=<ID=ALT_F1R2,Number=1,Type=Integer,Description="Count of reads in F1R2 pair orientation supporting the alternate allele">
+##FORMAT=<ID=ALT_F2R1,Number=1,Type=Integer,Description="Count of reads in F2R1 pair orientation supporting the alternate allele">
+##FORMAT=<ID=BaseQRankSumPS,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt Vs. Ref base qualities per sample">
+##FORMAT=<ID=ClippingRankSumPS,Number=1,Type=Float,Description="Z-score From Wilcoxon rank sum test of Alt vs. Ref number of hard clipped bases per sample">
+##FORMAT=<ID=DPHC,Number=1,Type=Integer,Description="Read depth of high confidence alt and ref">
+##FORMAT=<ID=DPHCLOWMQ,Number=1,Type=Integer,Description="Read depth of high confidence alt and ref with low mapq reads">
+##FORMAT=<ID=FOXOG,Number=1,Type=Float,Description="Fraction of alt reads indicating OxoG error">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype quality">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=MQRankSumPS,Number=1,Type=Float,Description="Z-score From Wilcoxon rank sum test of Alt vs. Ref read mapping qualities per sample">
+##FORMAT=<ID=NBQPS,Number=1,Type=Float,Description="Mean Neighboring Base Quality, includes 5bp on both sides per sample">
+##FORMAT=<ID=PGT,Number=1,Type=String,Description="Physical phasing haplotype information, describing how the alternate alleles are phased in relation to one another">
+##FORMAT=<ID=PID,Number=1,Type=String,Description="Physical phasing ID information, where each unique ID within a given sample (but not across samples) connects records within a phasing group">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="The phred-scaled genotype likelihoods rounded to the closest integer">
+##FORMAT=<ID=QSS,Number=R,Type=Integer,Description="Sum of base quality scores for each allele">
+##FORMAT=<ID=REF_F1R2,Number=1,Type=Integer,Description="Count of reads in F1R2 pair orientation supporting the reference allele">
+##FORMAT=<ID=REF_F2R1,Number=1,Type=Integer,Description="Count of reads in F2R1 pair orientation supporting the reference allele">
+##FORMAT=<ID=ReadPosEndDistPS,Number=1,Type=Float,Description="Mean distance from either end of read per sample">
+##FORMAT=<ID=ReadPosRankSumPS,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt vs. Ref read position bias per sample">
+##INFO=<ID=DB,Number=0,Type=Flag,Description="dbSNP Membership">
+##INFO=<ID=ECNT,Number=1,Type=Integer,Description="Number of events in this haplotype">
+##INFO=<ID=FS,Number=1,Type=Float,Description="Phred-scaled p-value using Fisher's exact test to detect strand bias">
+##INFO=<ID=HCNT,Number=1,Type=Integer,Description="Number of haplotypes that support this variant">
+##INFO=<ID=MAX_ED,Number=1,Type=Integer,Description="Maximum distance between events in this active region">
+##INFO=<ID=MIN_ED,Number=1,Type=Integer,Description="Minimum distance between events in this active region">
+##INFO=<ID=NLOD,Number=1,Type=Float,Description="Normal LOD score">
+##INFO=<ID=NLODF,Number=1,Type=Float,Description="Normal LOD score at tumor frac">
+##INFO=<ID=PON,Number=1,Type=Integer,Description="Count from Panel of Normals">
+##INFO=<ID=PV,Number=1,Type=Float,Description="Fisher's exact test p-value">
+##INFO=<ID=PV2,Number=1,Type=Float,Description="Fisher's exact test p-value for high-confidence reads">
+##INFO=<ID=RPA,Number=R,Type=Integer,Description="Number of times tandem repeat unit is repeated, for each allele (including reference)">
+##INFO=<ID=RU,Number=1,Type=String,Description="Tandem repeat unit (bases)">
+##INFO=<ID=SOR,Number=1,Type=Float,Description="Symmetric Odds Ratio of 2x2 contingency table to detect strand bias">
+##INFO=<ID=STR,Number=0,Type=Flag,Description="Variant is a short tandem repeat">
+##INFO=<ID=TLOD,Number=1,Type=Float,Description="Tumor LOD score">
+##SentieonCommandLine.TNscope=<ID=TNscope,Version="sentieon-genomics-202010.02",Date="2021-10-08T19:32:16Z",CommandLine="/mnt/clinical/bin/sentieon-genomics-202010.02/libexec/driver -t 8 -r /mnt/zlei/projects/ctDNA/src/BWAIndex/whole_genome.fa --interval /mnt/zlei/projects/ctDNA/Dev_run5/work_sentieon_somatic_with_CNV_regions/ctDNA_somatic_with_CNV_regions.fixed.bed -i 19_076619_CNV_Tumor_P1T_umi_consensus.bam -i 19_073344_CNV_Germline_P1G_umi_consensus.bam --algo TNscope --tumor_sample 19_076619_CNV_Tumor_P1T --normal_sample 19_073344_CNV_Germline_P1G --dbsnp /mnt/zlei/projects/ctDNA/src/dbsnp/dbsnp_138.b37.chr.vcf.gz --cosmic /mnt/zlei/projects/ctDNA/src/dbsnp/CosmicCodingMuts.chr.vcf.gz --disable_detector sv --trim_soft_clip --min_tumor_allele_frac 0.0009 --filter_t_alt_frac 0.0009 --clip_by_minbq 1 --assemble_mode 4 --max_normal_alt_cnt 3 --max_fisher_pv_active 0.05 --min_init_tumor_lod 3.0 --min_tumor_lod 3.0 --pcr_indel_model NONE 19_076619_CNV_Tumor_P1T_vs_19_073344_CNV_Germline_P1G_umi_consensus_TLOD3.0.vcf">
+##contig=<ID=chr1,length=249250621,assembly=unknown>
+##contig=<ID=chr2,length=243199373,assembly=unknown>
+##contig=<ID=chr3,length=198022430,assembly=unknown>
+##contig=<ID=chr4,length=191154276,assembly=unknown>
+##contig=<ID=chr5,length=180915260,assembly=unknown>
+##contig=<ID=chr6,length=171115067,assembly=unknown>
+##contig=<ID=chr7,length=159138663,assembly=unknown>
+##contig=<ID=chr8,length=146364022,assembly=unknown>
+##contig=<ID=chr9,length=141213431,assembly=unknown>
+##contig=<ID=chr10,length=135534747,assembly=unknown>
+##contig=<ID=chr11,length=135006516,assembly=unknown>
+##contig=<ID=chr12,length=133851895,assembly=unknown>
+##contig=<ID=chr13,length=115169878,assembly=unknown>
+##contig=<ID=chr14,length=107349540,assembly=unknown>
+##contig=<ID=chr15,length=102531392,assembly=unknown>
+##contig=<ID=chr16,length=90354753,assembly=unknown>
+##contig=<ID=chr17,length=81195210,assembly=unknown>
+##contig=<ID=chr18,length=78077248,assembly=unknown>
+##contig=<ID=chr19,length=59128983,assembly=unknown>
+##contig=<ID=chr20,length=63025520,assembly=unknown>
+##contig=<ID=chr21,length=48129895,assembly=unknown>
+##contig=<ID=chr22,length=51304566,assembly=unknown>
+##contig=<ID=chrX,length=155270560,assembly=unknown>
+##contig=<ID=chrY,length=59373566,assembly=unknown>
+##contig=<ID=artifact_seq,length=17388,assembly=unknown>
+##reference=file:///mnt/zlei/projects/ctDNA/src/BWAIndex/whole_genome.fa
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	19_076619_CNV_Tumor_P1T
+chr1	11181418	.	G	A	4.67	PASS	ECNT=1;FS=0.000;HCNT=1;MAX_ED=.;MIN_ED=.;NLOD=1345.39;NLODF=433.21;PV=0.1961;PV2=0.1961;SOR=2.832;TLOD=3.29	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1091:0/1:1088,3:0.003:1091:3:0:1:-0.879:0.000:1082:0.000:0.070:36.000:52463,108:76:61:22.227:-2.066
+chr1	11182153	.	C	T	34.64	PASS	ECNT=1;FS=0.000;HCNT=3;MAX_ED=.;MIN_ED=.;NLOD=2046.01;NLODF=658.59;PV=0.2578;PV2=0.2578;SOR=0.600;TLOD=6.46	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	2360:0/1:2353,7:0.003:2361:6:0:0:-1.680:0.000:2348:.:0.099:45.455:112576,256:203:129:21.739:-2.403
+chr1	11184568	.	G	A	44.13	PASS	ECNT=1;FS=0.000;HCNT=2;MAX_ED=.;MIN_ED=.;NLOD=1535.41;NLODF=494.37;PV=0.1752;PV2=0.1752;SOR=0.925;TLOD=7.41	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1083:0/1:1078,5:0.005:1083:5:1:0:0.543:0.000:1075:1.000:0.000:52.000:52041,260:104:88:22.718:1.426
+chr1	11187857	.	C	T	19.65	PASS	ECNT=1;FS=0.000;HCNT=1;MAX_ED=.;MIN_ED=.;NLOD=2053.75;NLODF=661.23;PV=1.0000;PV2=1.0000;SOR=0.976;TLOD=4.96	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1685:0/1:1681,4:0.002:1684:4:0:0:0.943:0.000:1675:.:0.061:56.000:80051,224:121:90:21.786:-0.841
+chr1	115248099	.	G	T	8.10	alt_allele_in_normal	ECNT=1;FS=0.000;HCNT=9;MAX_ED=.;MIN_ED=.;NLOD=1863.11;NLODF=595.66;PV=0.2518;PV2=1.0000;SOR=0.701;TLOD=3.74	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	2084:0/1:2078,6:0.003:2083:4:1:0:-1.115:0.000:2076:1.000:-1.970:41.935:100075,231:250:118:35.935:-1.618
+chr1	115252323	.	G	A	22.38	PASS	ECNT=1;FS=0.000;HCNT=5;MAX_ED=.;MIN_ED=.;NLOD=1020.91;NLODF=328.69;PV=0.0600;PV2=0.2446;SOR=1.525;TLOD=5.24	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1098:0/1:1093,5:0.005:1097:4:0:2:-0.863:0.000:1092:0.000:0.105:50.273:50347,187:198:129:24.981:-0.243
+chr1	115254348	.	A	T	12.41	PASS	ECNT=1;FS=0.000;HCNT=1;MAX_ED=.;MIN_ED=.;NLOD=1757.03;NLODF=565.32;PV=0.3562;PV2=1.0000;SOR=1.134;TLOD=4.22	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	3232:0/1:3227,5:0.002:3231:4:0:0:1.067:0.000:3223:.:0.100:56.295:147608,278:282:296:35.865:-2.914
+chr1	115256463	.	G	A	8.42	PASS	ECNT=2;FS=0.000;HCNT=8;MAX_ED=22;MIN_ED=22;NLOD=1900.01;NLODF=609.62;PV=1.0000;PV2=1.0000;SOR=1.957;TLOD=3.78	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	2063:0/1:2059,4:0.002:2061:4:2:1:-1.241:0.000:2047:0.667:0.094:35.750:102281,144:220:124:35.656:-1.821
+chr1	115256485	.	C	T	12.94	PASS	ECNT=2;FS=0.000;HCNT=7;MAX_ED=22;MIN_ED=22;NLOD=1787.68;NLODF=575.54;PV=0.2496;PV2=0.2496;SOR=0.838;TLOD=4.27	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1976:0/1:1972,4:0.002:1974:4:0:0:-0.245:0.000:1972:.:0.085:46.000:97374,184:251:133:35.030:1.112
+chr1	115258753	.	C	G	12.21	PASS	ECNT=2;FS=0.000;HCNT=19;MAX_ED=2;MIN_ED=2;NLOD=1450.21;NLODF=466.87;PV=1.0000;PV2=1.0000;SOR=2.822;TLOD=4.19	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:PGT:PID:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1420:0/1:1417,3:0.002:1418:3:0:0:-2.616:0.000:1421:.:0.061:34.000:0|1:115258753_C_G:66966,102:109:50:33.339:-2.363
+chr1	115258755	.	A	T	12.21	PASS	ECNT=2;FS=0.000;HCNT=19;MAX_ED=2;MIN_ED=2;NLOD=1450.21;NLODF=466.87;PV=1.0000;PV2=1.0000;SOR=3.605;TLOD=4.19	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:PGT:PID:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	1399:0/1:1396,3:0.002:1418:3:0:0:-2.678:0.000:1421:.:0.062:34.000:0|1:115258753_C_G:65958,102:108:49:33.001:-2.452
+chr1	156834132	.	C	T	12.46	PASS	ECNT=1;FS=0.000;HCNT=17;MAX_ED=.;MIN_ED=.;NLOD=1245.22;NLODF=400.90;PV=0.3303;PV2=0.3303;SOR=1.515;TLOD=4.22	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	2039:0/1:2035,4:0.002:2039:4:0:0:-0.137:0.000:2034:.:0.055:45.023:98603,184:165:145:25.819:-0.083
+chr1	156837944	.	A	C	3.08	alt_allele_in_normal	ECNT=1;FS=0.000;HCNT=3;MAX_ED=.;MIN_ED=.;NLOD=1491.33;NLODF=427.78;PV=0.4119;PV2=0.4119;SOR=1.407;TLOD=3.01	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	7363:0/1:7296,67:0.009:7364:67:10:17:-13.916:0.000:7364:0.630:0.215:36.645:365814,1179:390:254:34.721:2.096
+chr1	156843433	.	A	T	1081.50	alt_allele_in_normal	ECNT=4;FS=6.683;HCNT=3;MAX_ED=101;MIN_ED=19;NLOD=1060.53;NLODF=248.34;PV=0.1193;PV2=0.4358;SOR=3.625;TLOD=111.15	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	11279:0/1:11090,189:0.017:11293:105:28:40:-18.301:0.000:10828:0.588:0.344:41.676:539872,4106:594:244:34.096:8.025
+chr1	156843452	.	C	T	11.32	low_t_alt_frac	ECNT=4;FS=0.000;HCNT=1;MAX_ED=101;MIN_ED=17;NLOD=1349.90;NLODF=434.62;PV=0.7309;PV2=1.0000;SOR=1.383;TLOD=4.10	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	12171:0/1:12162,9:0.001:12175:8:2:2:-1.942:0.000:12144:0.500:0.062:44.000:632845,331:673:361:35.692:-1.880
+chr1	156843469	.	T	A	36.37	alt_allele_in_normal	ECNT=4;FS=0.000;HCNT=3;MAX_ED=101;MIN_ED=17;NLOD=1251.48;NLODF=357.39;PV=0.4004;PV2=0.4004;SOR=3.912;TLOD=6.64	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	12452:0/1:12337,115:0.009:12463:114:26:2:-18.247:0.000:12469:0.929:0.216:33.381:634790,1662:673:386:37.805:7.155
+chr1	156843534	rs368994290	C	T	15.43	low_t_alt_frac	DB;ECNT=4;FS=0.000;HCNT=1;MAX_ED=101;MIN_ED=65;NLOD=1796.89;NLODF=578.56;PV=1.0000;PV2=1.0000;SOR=2.426;TLOD=4.53	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	17145:0/1:17135,10:0.001:17156:9:0:0:-1.800:0.000:17086:.:0.027:47.236:931015,407:852:467:32.537:0.435
+chr1	156843599	.	G	A	7.18	low_t_alt_frac	ECNT=6;FS=0.000;HCNT=1;MAX_ED=157;MIN_ED=35;NLOD=1903.72;NLODF=612.76;PV=1.0000;PV2=1.0000;SOR=1.841;TLOD=3.63	DP:GT:AD:AF:AFDP:ALTHC:ALT_F1R2:ALT_F2R1:BaseQRankSumPS:ClippingRankSumPS:DPHC:FOXOG:MQRankSumPS:NBQPS:QSS:REF_F1R2:REF_F2R1:ReadPosEndDistPS:ReadPosRankSumPS	18645:0/1:18636,9:0.000:18649:8:1:0:-1.364:0.000:18586:1.000:0.000:51.326:1017428,408:837:449:32.614:0.719

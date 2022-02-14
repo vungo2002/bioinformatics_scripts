@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nextflow mnv_simulator.nf --input $PWD/examples/main_input.txt --read1_prof $PWD/art_models/ctDNAFusion_profileR1.txt --read2_prof $PWD/art_models/ctDNAFusion_profileR2.txt --out_dir test_output

@@ -1,0 +1,11 @@
+/mnt/clinical/bin/miniconda3/envs/ngs_panels/bin/python /mnt/clinical/bin/MNV_detection/mnv_calling.py -r /mnt/zlei/projects/ctDNA/src/BWAIndex/whole_genome.fa             -i /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.vcf             -b /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.bam             -o /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/MNV_Germline             -c /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/MNV_Germline/20_176064_B1A.mnv.vcf
+
+/mnt/clinical/bin/miniconda3/envs/ngs_panels/bin/python /mnt/clinical/bin/MNV_detection/mnv_calling.py -r /mnt/zlei/projects/ctDNA/src/BWAIndex/whole_genome.fa             -i /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.vcf             -b /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.bam             -o /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/MNV_Germline             -c 20_176064_B1A.mnv.vcf
+
+
+mkdir -p /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/MNV_Germline
+ln -s /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A_umi_consensus.bam /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.bam
+
+ln -s /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A_umi_consensus.bam.bai /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.bam.bai
+
+/mnt/clinical/bin/miniconda3/envs/ngs_panels/bin/python /mnt/clinical/bin/MNV_detection/mnv_calling.py -r /mnt/zlei/projects/ctDNA/src/BWAIndex/whole_genome.fa             -i /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.vcf             -b /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/20_176064_B1A.bam             -o /mnt/vngo/projects/liquid_biopsy/Project_277_CancerV5/Sample_20_176064_B1A/MNV_Germline             -c 20_176064_B1A.mnv.vcf

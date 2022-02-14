@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 bin/generate_fastq_reads.py -a /home/vngo/tools/art_bin_MountRainier/art_illumina -1 art_models/ctDNAFusion_profileR1.txt -2 art_models/ctDNAFusion_profileR2.txt -i examples/HAP1_conv_input.txt -r examples/HAP1.sim.fa -o examples/fastq/hap1
